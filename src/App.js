@@ -23,11 +23,10 @@ class App extends Component {
         this.state.names[i],
         {
         path: '/',
-        expires,
         maxAge: 1000,
         domain: 'http://secretsanta24tf.herokuapp.com',
-        secure: true
-        httpOnly: true
+        secure: true,
+        httpOnly: true,
         });
     }
   }
