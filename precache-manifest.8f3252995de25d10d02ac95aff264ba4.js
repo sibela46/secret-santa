@@ -20,19 +20,19 @@ self.__precacheManifest = [
     "url": "/secret-santa/static/js/runtime~main.8532a1fc.js"
   },
   {
-    "revision": "f86e75c805d3f28cb751",
-    "url": "/secret-santa/static/js/main.f86e75c8.chunk.js"
+    "revision": "5745767818a8fe415f2c",
+    "url": "/secret-santa/static/js/main.57457678.chunk.js"
   },
   {
     "revision": "c5baa522e03f6f17faa3",
     "url": "/secret-santa/static/js/1.c5baa522.chunk.js"
   },
   {
-    "revision": "f86e75c805d3f28cb751",
+    "revision": "5745767818a8fe415f2c",
     "url": "/secret-santa/static/css/main.fec9b9b5.chunk.css"
   },
   {
-    "revision": "2b609d9783d2c546ab8a1961ed05fcad",
+    "revision": "4db72e08f0f0505ad3d4176ef4797d0f",
     "url": "/secret-santa/index.html"
   }
 ];
