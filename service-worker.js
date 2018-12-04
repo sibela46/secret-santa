@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/secret-santa/precache-manifest.4df1d659a8af0a11d3dc2a9c91ccfe73.js"
+  "/secret-santa/precache-manifest.4087d55981d1ecfb56318c3d06ca2102.js"
 );
 
 workbox.clientsClaim();
