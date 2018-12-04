@@ -1,6 +1,7 @@
 {
   "name": "secret-santa",
   "version": "0.1.0",
+  "homepage": "http://sibela46.github.io/secret-santa",
   "private": true,
   "dependencies": {
     "@babel/core": "7.1.0",

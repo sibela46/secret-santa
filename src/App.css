@@ -34,6 +34,7 @@
     font-family: "ChristmasFont", sans-serif; }
 
 button {
+  cursor: pointer;
   text-decoration: none;
   outline: none;
   border: none;

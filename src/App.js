@@ -18,16 +18,7 @@ class App extends Component {
   }
   componentWillMount() {
     for(var i = 0; i < this.state.names.length; i++) {
-      cookie.save(
-        'name' + i,
-        this.state.names[i],
-        {
-        path: '/',
-        maxAge: 1000,
-        domain: 'http://secretsanta24tf.herokuapp.com',
-        secure: true,
-        httpOnly: true,
-        });
+      cookie.save('name' + i, this.state.names[i], { path: '/' });
     }
   }
   contains(needle) {
