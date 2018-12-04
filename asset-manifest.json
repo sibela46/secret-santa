@@ -1,7 +1,7 @@
 {
   "main.css": "/secret-santa/static/css/main.fec9b9b5.chunk.css",
-  "main.js": "/secret-santa/static/js/main.99a1b0f6.chunk.js",
-  "main.js.map": "/secret-santa/static/js/main.99a1b0f6.chunk.js.map",
+  "main.js": "/secret-santa/static/js/main.024d5063.chunk.js",
+  "main.js.map": "/secret-santa/static/js/main.024d5063.chunk.js.map",
   "static/js/1.c5baa522.chunk.js": "/secret-santa/static/js/1.c5baa522.chunk.js",
   "static/js/1.c5baa522.chunk.js.map": "/secret-santa/static/js/1.c5baa522.chunk.js.map",
   "runtime~main.js": "/secret-santa/static/js/runtime~main.8532a1fc.js",
@@ -11,6 +11,6 @@
   "static/media/white_christmas.mp3": "/secret-santa/static/media/white_christmas.cc877a19.mp3",
   "static/css/main.fec9b9b5.chunk.css.map": "/secret-santa/static/css/main.fec9b9b5.chunk.css.map",
   "index.html": "/secret-santa/index.html",
-  "precache-manifest.ceb480588dd64517d32a321b9393cdeb.js": "/secret-santa/precache-manifest.ceb480588dd64517d32a321b9393cdeb.js",
+  "precache-manifest.a0ff1993da4b58ac6b5f42605c320c5a.js": "/secret-santa/precache-manifest.a0ff1993da4b58ac6b5f42605c320c5a.js",
   "service-worker.js": "/secret-santa/service-worker.js"
 }
