@@ -16,6 +16,7 @@ $font-secondary: 'ChristmasFontSecond', sans-serif;
 $christmas-red: #d42426;
 $christmas-green: #006633;
 .App {
+  height: 100%;
   text-align: center;
   font-family: $font-primary;
   background-color: $christmas-red;
@@ -44,20 +45,21 @@ $christmas-green: #006633;
 }
 
 button {
+  width: 40vmin;
+  height: 20vmin;
   cursor: pointer;
   text-decoration: none;
   outline: none;
   border: none;
   color: white;
   background-color: $christmas-green;
-  padding: 5vmin 10vmin;
   margin: 5vmin;
   font-family: $font-primary;
-  font-size: 10vmin;
+  font-size: 3em;
   border-radius: 5vmin;
   &:hover {
     border: white 5px solid;
-    font-size: 10.5vmin;
+    font-size: 3.5em;
     transition: 0.1s border ease-in;
   }
 }
@@ -67,7 +69,7 @@ button {
     font-family: $font-primary;
   }
   min-height: 100vh;
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -77,6 +79,45 @@ button {
 
 .App-link {
   color: #61dafb;
+}
+
+.input {
+  height: 400px;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.input > .label {
+  font-size: 5em;
+}
+
+select {
+  padding: 1em 2em;
+  border-radius: 20px;
+}
+
+.small {
+  cursor: pointer;
+  text-decoration: none;
+  outline: none;
+  border: none;
+  color: white;
+  background-color: $christmas-green;
+  padding: 0;
+  font-family: $font-primary;
+  font-size: 2em;
+  border-radius: 5vmin;
+  flex-basis: 1;
+  height: 100px;
+  width: 300px;
+  text-align: center;
+  &:hover {
+    border: white 5px solid;
+    font-size: 2.5em;
+    transition: 0.1s border ease-in;
+  }
 }
 
 @keyframes jump {
