@@ -13,13 +13,33 @@ class App extends Component {
         super(props);
         this.state = {
             showName: false,
-            allNames: ["Албена", "Ерол", "Джуна", "Сибела", "Миглена", "Анастас", "Елена", "Михаил", "Емилия", "Венелин", "Цанислав", "Климент"],
-            allPasswords: { "Албена": "maimunki123", "Ерол": "kolela456",  "Джуна": "alohomora789", "Сибела": "taina123", "Миглена": "koleda456", "Анастас": "ribolov789", "Елена": "britney123", "Михаил": "chalga456", "Емилия": "koshnichki123", "Венелин": "snqg789", "Цанислав": "djudjeta123", "Климент": "mordor456" },
+            allNames: ["Александър", "Асен", "Деница", "Диана", "Илина", "Илиян", "Михаела", "Петър", "Сибела", "Виктория О.",
+                "Виктория И.", "Георги", "Красимир В.", "Красимир Д.", "Любчо", "Мирослав", "Недялко", "Ралица", "Филип"],
+            allPasswords: {
+                "Александър": "beatbox123",
+                "Асен": "tarantino456", 
+                "Деница": "kobilini789",
+                "Диана": "nutcracker123",
+                "Илина": "mamche456",
+                "Илиян": "apteka789",
+                "Михаела": "kozirog123",
+                "Петър": "kvantov456",
+                "Сибела": "jaduvam123",
+                "Виктория О.": "azis789",
+                "Виктория И.": "beanie123",
+                "Георги": "alohomora456",
+                "Красимир В.": "katerene123",
+                "Красимир Д.": "sara456",
+                "Любчо": "malyovitsa123",
+                "Мирослав": "houdini789",
+                "Недялко": "tutun123",
+                "Ралица": "fletcher456",
+                "Филип": "edgar123" },
             leftNames: [],
             drawn: [],
             pickedNumber: -1,
             allNumers: [],
-            currentUser: "Албена",
+            currentUser: "Александър",
             password: "",
             pickedName: "",
             questionnaire: { 1: { question: "Ако имаше двадесет и четири часа, в които можеше да правиш абсолютно всичко на света, какво щеше да правиш?", answer: "" }, 2: { question:"Довърши изречението. Аз съм таен експерт в...", answer: "" }, 3: { question: "Тази Коледа решаваш да раздадеш всичките си вещи без три от тях. Какво ще задържиш?", answer: "" },
@@ -59,10 +79,6 @@ class App extends Component {
         }));
     }
     authenticate(e) {
-        let users = this.state.drawn;
-        console.log(users.length);
-        let filteredUsers = users.filter(user => user.name != "Анастас");
-        console.log(filteredUsers.length);
         document.getElementsByClassName('rules')[0].style.display = "none";
         document.getElementsByClassName('authenticate')[0].style.display = "flex";
     }
@@ -74,7 +90,7 @@ class App extends Component {
         if (this.state.allPasswords[this.state.currentUser] !== this.state.password) {
             Swal.fire({
                 title: 'Грешна парола!',
-                text: "Или си Гринч, който иска да види на кого е Таен Дядо Коледа " + this.state.currentUser +", или си си забравил паролата. Ако е второто, попитай Сиска.",
+                text: "Или си Гринч, който иска да види на кого е Таен Дядо Коледа " + this.state.currentUser +", или си си забравил паролата. Ако е второто, попитай Сибела.",
                 icon: 'error',
                 confirmButtonText: 'ОК',
                 confirmButtonColor: "#d42426"
@@ -173,7 +189,7 @@ class App extends Component {
             <div className="rules">
             <h1>Таен Дядо Коледа Правила:</h1>
                 <h2>Магическата кутия ще реши на кого да бъдеш Тайният Дядо Коледа. След като видиш името на екрана, го запомни. Ще подариш подарък
-                    на този човек на стойност до 50 лева. На Коледа, когато всички се съберем, ще си разменим подаръците :).
+                    на този човек на стойност до 30 лева. На Коледа, когато всички се съберем, ще си разменим подаръците :).
                 </h2>
                 <button onClick={this.authenticate.bind(this)}>Напред</button>
             </div>
