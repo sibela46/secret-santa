@@ -50,7 +50,7 @@ class App extends Component {
     }
     componentDidMount() {
         this.state.allNames.sort();
-        // db.ref("names").set(this.state.allNames);
+        // db.ref("names").set(this.state.allNames); // Uncomment to populate database
         db.ref("names").on("value", snapshot => {
             let allNames = [];
             snapshot.val().forEach(name => {
