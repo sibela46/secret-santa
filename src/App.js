@@ -125,7 +125,7 @@ class App extends Component {
         document.getElementsByClassName('App-header')[0].style.display = "flex"; 
     }
     giveName() {
-        this.setState({ showName: true });
+        this.setState({ showName: true, soundStatus: Sound.status.PLAYING });
         document.getElementsByClassName('jump')[0].style.display = "none";
 
         let userCookie = Cookie.get('user');
