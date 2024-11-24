@@ -4,67 +4,71 @@ import './App.scss';
 import soundfile from './white_christmas.mp3'
 import Sound from 'react-sound'
 import Cookie from 'js-cookie';
-import { db } from "./firebase.js";
 import randomstring from 'randomstring';
 import Swal from 'sweetalert2';
+import "./firebase";
+import { getNames, getDrawn, setNames, setDrawn } from './firebase';
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
             showName: false,
-            allNames: ["Александър", "Асен", "Деница", "Диана", "Илина", "Илиян", "Михаела", "Петър", "Сибела", "Виктория О.",
-                "Виктория И.", "Георги", "Красимир В.", "Красимир Д.", "Любчо", "Мирослав", "Недялко", "Ралица", "Филип"],
+            allNames: ["Албена", "Анастас", "Ерол", "Елена", "Джуна", "Климент", "Миглена", "Михаил", "Сибела", "Цанислав"],
             allPasswords: {
-                "Александър": "beatbox123",
-                "Асен": "tarantino456", 
-                "Деница": "kobilini789",
-                "Диана": "nutcracker123",
-                "Илина": "mamche456",
-                "Илиян": "apteka789",
-                "Михаела": "kozirog123",
-                "Петър": "kvantov456",
-                "Сибела": "jaduvam123",
-                "Виктория О.": "azis789",
-                "Виктория И.": "beanie123",
-                "Георги": "alohomora456",
-                "Красимир В.": "katerene123",
-                "Красимир Д.": "sara456",
-                "Любчо": "malyovitsa123",
-                "Мирослав": "houdini789",
-                "Недялко": "tutun123",
-                "Ралица": "fletcher456",
-                "Филип": "edgar123" },
+                "Албена": "ajdoel859",
+                "Анастас": "jkdsi430", 
+                "Ерол": "ko3943js",
+                "Елена": "hdfsa23d",
+                "Джуна": "jdksa622",
+                "Климент": "oiuopfd43",
+                "Миглена": "hdsamk95",
+                "Михаил": "hdslahi53",
+                "Сибела": "fdafdj783",
+                "Цанислав": "cghxads643"
+            },
             leftNames: [],
             drawn: [],
             pickedNumber: -1,
             allNumers: [],
-            currentUser: "Александър",
+            currentUser: "Албена",
             password: "",
             pickedName: "",
-            questionnaire: { 1: { question: "Ако имаше двадесет и четири часа, в които можеше да правиш абсолютно всичко на света, какво щеше да правиш?", answer: "" }, 2: { question:"Довърши изречението. Аз съм таен експерт в...", answer: "" }, 3: { question: "Тази Коледа решаваш да раздадеш всичките си вещи без три от тях. Какво ще задържиш?", answer: "" },
-            4: { question: "Какво е нещото, което може да гледаш или да четеш винаги без никога да ти омръзне?", answer: "" }, 5: { question: "Какво е нещото, което хората си мислят, че харесваш, но всъщност тайно не го?", answer: "" }, 6: { question: "Кой е най-хубавият подарък, който някога си получавал/а?", answer: "" }, 7: { question: "И накрая... какво очакваш с най-голямо нетърпение през идната година?", answer: "" }},
+            questionnaire: { 1: { question: "Ако имаше двадесет и четири часа, в които можеше да правиш абсолютно всичко на света, какво щеше да правиш?", answer: "" },
+            2: { question:"Довърши изречението. Аз съм таен експерт в...", answer: "" },
+            3: { question: "Тази Коледа решаваш да раздадеш всичките си вещи без три от тях. Какво ще задържиш?", answer: "" },
+            4: { question: "Какво е нещото, което може да гледаш или да четеш винаги без никога да ти омръзне?", answer: "" },
+            5: { question: "Какво е нещото, което хората си мислят, че харесваш, но всъщност тайно не го?", answer: "" },
+            6: { question: "Кой е най-хубавият подарък, който някога си получавал/а?", answer: "" },
+            7: { question: "А имаш ли конкретни желания за подарък?", answer: "" },
+            8: { question: "И накрая... какво очакваш с най-голямо нетърпение през идната година?", answer: "" }},
             pickedNameAnswers: {},
             soundStatus: Sound.status.STOPPED
         };
     }
     componentDidMount() {
         this.state.allNames.sort();
-        // db.ref("names").set(this.state.allNames); // Uncomment to populate database
-        db.ref("names").on("value", snapshot => {
-            let allNames = [];
-            snapshot.val().forEach(name => {
-                allNames.push(name);
-            });
-            this.setState({ leftNames: allNames });
-        });
-        db.ref("haveDrawn").on("value", snapshot => {
-            let allUsers = [];
-            snapshot.forEach(snap => {
-                allUsers.push(snap.val());
-            });
-            this.setState({ drawn: allUsers });
-        });
+        //setNames(this.state.allNames);
+        getNames().then(res => {            
+            let names = []
+            res.forEach(doc => {
+                console.log(doc);
+                names.push(...doc.names);
+            })            
+            this.setState({ leftNames: names });
+        }).catch(err => {
+            console.error(err);
+        })
+        getDrawn().then(res => {
+            let names = []
+            res.forEach(doc => {
+                console.log(doc);
+                names.push(...doc.names);
+            })            
+            this.setState({ drawn: names });
+        }).catch(err => {
+            console.error(err);
+        })        
     }
     changeCurrentUser() {
         var e = document.getElementById("names");
@@ -80,7 +84,7 @@ class App extends Component {
     }
     authenticate(e) {
         document.getElementsByClassName('rules')[0].style.display = "none";
-        document.getElementsByClassName('authenticate')[0].style.display = "flex";
+        document.getElementsByClassName('authenticate')[0].style.display = "flex";        
     }
     changePassword(e) {
         var e = document.getElementById("password");
@@ -96,10 +100,10 @@ class App extends Component {
                 confirmButtonColor: "#d42426"
             });
             return;
-        }
-
+        }        
         document.getElementsByClassName('authenticate')[0].style.display = "none";
         let userCookie = Cookie.get('user');
+        
         const userHasDrawn = this.state.drawn.find(drawnData => drawnData.cookie === userCookie || drawnData.name === this.state.currentUser);
         if (userHasDrawn) {
             let pickedName = userHasDrawn.pickedName;
@@ -121,7 +125,7 @@ class App extends Component {
         document.getElementsByClassName('App-header')[0].style.display = "flex"; 
     }
     giveName() {
-        this.setState({ showName: true, soundStatus: Sound.status.PLAYING });
+        this.setState({ showName: true });
         document.getElementsByClassName('jump')[0].style.display = "none";
 
         let userCookie = Cookie.get('user');
@@ -131,6 +135,7 @@ class App extends Component {
         }
 
         let pickedName = '';
+        
         const userHasDrawn = this.state.drawn.find(drawnData => drawnData.cookie === userCookie || drawnData.name === this.state.currentUser);
         if (userHasDrawn) {
             pickedName = userHasDrawn.pickedName;
@@ -139,7 +144,7 @@ class App extends Component {
             pickedName = this.pickName();
             this.setState({ pickedName: pickedName });
         }
-
+        
         const pickedNameData = this.state.drawn.find(drawnData => drawnData.name === pickedName);
         let pickedNameQuestionnaire = {};
         if (pickedNameData) {
@@ -150,29 +155,34 @@ class App extends Component {
     pickName() {
         let userCookie = Cookie.get('user');
         let newlyDrawn = this.state.drawn;
-        var pickedNumber = Math.floor(Math.random() * this.state.leftNames.length);
+        
+        var pickedNumber = Math.floor(Math.random() * this.state.leftNames.length);        
         let pickedName = this.state.leftNames[pickedNumber];
+                
         // User cannot draw this name if they have drawn themselves or if they have drawn a person who is their own secret santa
         let userSecretSanta = this.state.drawn.find(drawnData => drawnData.name === pickedName);
         let twoSidedSanta = false;
         if (userSecretSanta) {
             twoSidedSanta = userSecretSanta.pickedName === this.state.currentUser;
         }
+        console.log(this.state.currentUser);
+        
         let cannotDrawThisName = pickedName === this.state.currentUser || twoSidedSanta;
         while (cannotDrawThisName) {
             pickedNumber = Math.floor(Math.random() * this.state.leftNames.length);
-            pickedName = this.state.leftNames[pickedNumber];
-
-            twoSidedSanta = userSecretSanta.pickedName === this.state.currentUser;
+            pickedName = this.state.leftNames[pickedNumber];            
+            twoSidedSanta = userSecretSanta ? userSecretSanta.pickedName === this.state.currentUser : false;
             cannotDrawThisName = pickedName === this.state.currentUser || twoSidedSanta;
         }
         let obj = { cookie: userCookie, name: this.state.currentUser, pickedName: pickedName, questionnaire: this.state.questionnaire };
+        
         newlyDrawn.push(obj);
-        const newNames = this.state.leftNames.filter(name => name !== pickedName);
-        db.ref("names").set(newNames);
-        db.ref("haveDrawn").set(newlyDrawn);
-        this.setState({ leftNames: newNames, pickedName: pickedName });
 
+        const newNames = this.state.leftNames.filter(name => name !== pickedName);
+        this.setState({ leftNames: newNames, drawn: newlyDrawn })
+
+        setNames(newNames);
+        setDrawn(newlyDrawn);
         return pickedName;
     }
     render() {
