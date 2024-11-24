@@ -52,7 +52,6 @@ class App extends Component {
         getNames().then(res => {            
             let names = []
             res.forEach(doc => {
-                console.log(doc);
                 names.push(...doc.names);
             })            
             this.setState({ leftNames: names });
@@ -62,7 +61,6 @@ class App extends Component {
         getDrawn().then(res => {
             let names = []
             res.forEach(doc => {
-                console.log(doc);
                 names.push(...doc.names);
             })            
             this.setState({ drawn: names });
@@ -165,7 +163,6 @@ class App extends Component {
         if (userSecretSanta) {
             twoSidedSanta = userSecretSanta.pickedName === this.state.currentUser;
         }
-        console.log(this.state.currentUser);
         
         let cannotDrawThisName = pickedName === this.state.currentUser || twoSidedSanta;
         while (cannotDrawThisName) {

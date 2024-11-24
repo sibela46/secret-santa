@@ -25,7 +25,6 @@ async function setNames(names) {
 
 async function setDrawn(names) {
     const namesCollection = collection(db, "haveDrawn");
-    console.log(names);
     
     const toAdd = {
         names: names
